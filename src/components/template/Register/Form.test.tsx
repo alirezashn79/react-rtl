@@ -18,6 +18,16 @@ const clickEvent = (element: HTMLButtonElement) => {
   return userEvent.click(element);
 };
 
+const mockUseNavigate = vi.fn();
+
+vi.mock("react-router-dom", async () => {
+  const actual = await vi.importActual("react-router-dom");
+  return {
+    ...actual,
+    useNavigate: () => mockUseNavigate,
+  };
+});
+
 const validData = {
   email: "alireza@test.com",
   password: "1234",
@@ -169,6 +179,31 @@ describe("Register Form", () => {
       expect(
         screen.getByText(errorMessages.confirmPassword)
       ).toBeInTheDocument();
+    });
+  });
+
+  describe("Handle Navigation", () => {
+    test("should call the navigation after clicking on submit button", async () => {
+      await changeEvent(formElements.Email, validData.email);
+      await changeEvent(formElements.Password, validData.password);
+      await changeEvent(
+        formElements.ConfirmPassword,
+        validData.confirmPassword
+      );
+
+      await clickEvent(formElements.Button);
+
+      expect(screen.queryByText(errorMessages.email)).not.toBeInTheDocument();
+      expect(
+        screen.queryByText(errorMessages.password)
+      ).not.toBeInTheDocument();
+      expect(
+        screen.queryByText(errorMessages.confirmPassword)
+      ).not.toBeInTheDocument();
+
+      expect(mockUseNavigate).toHaveBeenCalledWith("/products", {
+        state: validData,
+      });
     });
   });
 });
