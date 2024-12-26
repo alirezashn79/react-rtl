@@ -206,4 +206,12 @@ describe("Register Form", () => {
       });
     });
   });
+
+  describe("Snapshot", () => {
+    test("should match with snapshop", () => {
+      const view = render(<Register />);
+
+      expect(view).toMatchSnapshot();
+    });
+  });
 });
