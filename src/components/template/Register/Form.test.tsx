@@ -14,6 +14,31 @@ const changeEvent = (element: HTMLInputElement, value: string) => {
   return act(() => userEvent.type(element, value));
 };
 
+const clickEvent = (element: HTMLButtonElement) => {
+  return userEvent.click(element);
+};
+
+const validData = {
+  email: "alireza@test.com",
+  password: "1234",
+  confirmPassword: "1234",
+};
+
+const invalidData = {
+  email: "invalid-email",
+  password: "123",
+  confirmPassword: {
+    matchWithIncorrectPassword: "123",
+    notMatch: "7896",
+  },
+};
+
+const errorMessages = {
+  email: "Invalid email",
+  password: "String must contain at least 4 character(s)",
+  confirmPassword: "The passwords did not match",
+};
+
 describe("Register Form", () => {
   let formElements: formElementsType;
 
@@ -57,5 +82,93 @@ describe("Register Form", () => {
     await changeEvent(formElements.ConfirmPassword, "12345");
 
     expect(formElements.Button).toBeEnabled();
+  });
+
+  describe("Handle Errors", () => {
+    beforeEach(() => {
+      expect(screen.queryByText(errorMessages.email)).not.toBeInTheDocument();
+      expect(
+        screen.queryByText(errorMessages.password)
+      ).not.toBeInTheDocument();
+      expect(
+        screen.queryByText(errorMessages.confirmPassword)
+      ).not.toBeInTheDocument();
+    });
+
+    test("should show email error message on invalid email", async () => {
+      await changeEvent(formElements.Email, invalidData.email);
+      await changeEvent(formElements.Password, validData.password);
+      await changeEvent(
+        formElements.ConfirmPassword,
+        validData.confirmPassword
+      );
+
+      await clickEvent(formElements.Button);
+
+      expect(screen.getByText(errorMessages.email)).toBeInTheDocument();
+      expect(
+        screen.queryByText(errorMessages.password)
+      ).not.toBeInTheDocument();
+      expect(
+        screen.queryByText(errorMessages.confirmPassword)
+      ).not.toBeInTheDocument();
+    });
+
+    test("should show password error message on invalid password", async () => {
+      await changeEvent(formElements.Email, validData.email);
+      await changeEvent(formElements.Password, invalidData.password);
+      await changeEvent(
+        formElements.ConfirmPassword,
+        invalidData.confirmPassword.matchWithIncorrectPassword
+      );
+
+      await clickEvent(formElements.Button);
+
+      expect(screen.queryByText(errorMessages.email)).not.toBeInTheDocument();
+      expect(
+        screen.getAllByText(errorMessages.password)[0]
+      ).toBeInTheDocument();
+      expect(
+        screen.queryByText(errorMessages.confirmPassword)
+      ).not.toBeInTheDocument();
+    });
+
+    test("should show confirm password error message on invalid confirm password", async () => {
+      await changeEvent(formElements.Email, validData.email);
+      await changeEvent(formElements.Password, validData.password);
+      await changeEvent(
+        formElements.ConfirmPassword,
+        invalidData.confirmPassword.matchWithIncorrectPassword
+      );
+
+      await clickEvent(formElements.Button);
+
+      expect(screen.queryByText(errorMessages.email)).not.toBeInTheDocument();
+      expect(
+        screen.getAllByText(errorMessages.password)[0]
+      ).toBeInTheDocument();
+      expect(
+        screen.queryByText(errorMessages.confirmPassword)
+      ).not.toBeInTheDocument();
+    });
+
+    test("should show confirm password error message on password not match", async () => {
+      await changeEvent(formElements.Email, validData.email);
+      await changeEvent(formElements.Password, validData.password);
+      await changeEvent(
+        formElements.ConfirmPassword,
+        invalidData.confirmPassword.notMatch
+      );
+
+      await clickEvent(formElements.Button);
+
+      expect(screen.queryByText(errorMessages.email)).not.toBeInTheDocument();
+      expect(
+        screen.queryByText(errorMessages.password)
+      ).not.toBeInTheDocument();
+      expect(
+        screen.getByText(errorMessages.confirmPassword)
+      ).toBeInTheDocument();
+    });
   });
 });
