@@ -87,11 +87,11 @@ export default function RegisterForm() {
             name="confirmPassword"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>confirm Password</FormLabel>
+                <FormLabel>Confirm Password</FormLabel>
                 <FormControl>
                   <Input
                     type="password"
-                    placeholder="confirm Password"
+                    placeholder="Confirm Password"
                     {...field}
                   />
                 </FormControl>
@@ -100,7 +100,16 @@ export default function RegisterForm() {
             )}
           />
 
-          <Button type="submit">Submit</Button>
+          <Button
+            disabled={
+              !form.formState.dirtyFields.email ||
+              !form.formState.dirtyFields.password ||
+              !form.formState.dirtyFields.confirmPassword
+            }
+            type="submit"
+          >
+            Submit
+          </Button>
         </form>
       </Form>
     </div>
