@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 import { Product } from "@/types";
 import { useState } from "react";
 
@@ -33,8 +34,13 @@ export default function ProductCard(props: Product) {
 
         <p className="line-clamp-2 text-sm">{props.description}</p>
       </CardContent>
-      <CardFooter>
-        <Button variant={cart ? "destructive" : "default"} onClick={onAdd}>
+      <CardFooter className="flex items-center justify-between">
+        <p className="price">&#36;{props.price}</p>
+        <Button
+          variant={cart ? "destructive" : "default"}
+          onClick={onAdd}
+          className={cn(cart && "selected")}
+        >
           {cart ? "Added" : "Add To Cart"}
         </Button>
       </CardFooter>
