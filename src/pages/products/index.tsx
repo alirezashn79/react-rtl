@@ -25,7 +25,7 @@ export default function Products() {
     if (!data) {
       interval = setInterval(() => {
         setProgress((prev) => (prev < 93 ? prev + 3 : prev));
-      }, 400);
+      }, 500);
     } else {
       setProgress(100);
       setProducts(data);

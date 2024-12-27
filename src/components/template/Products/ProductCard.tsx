@@ -18,7 +18,7 @@ export default function ProductCard(props: Product) {
     setCart((prev) => !prev);
   };
   return (
-    <Card>
+    <Card data-testid="list-item">
       <CardHeader>
         <img className="aspect-square" src={props.image} alt={props.title} />
         <CardDescription className=" flex items-center justify-between">
