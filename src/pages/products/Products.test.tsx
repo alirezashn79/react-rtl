@@ -13,11 +13,9 @@ describe("Products component", () => {
 
   test("should display list of products", async () => {
     expect(screen.getByText(/loading/i)).toBeInTheDocument();
-    expect(screen.getByRole("progressbar")).toBeInTheDocument();
 
     const productsList = await waitFor(() => fetchProductsList());
     expect(screen.queryByText(/loading/i)).not.toBeInTheDocument();
-    expect(screen.queryByRole("progressbar")).not.toBeInTheDocument();
     expect(productsList.length).toBe(5);
   });
 });

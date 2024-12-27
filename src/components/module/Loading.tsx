@@ -1,10 +1,9 @@
-import { Progress } from "../ui/progress";
+import { Commet } from "react-loading-indicators";
 
-export default function Loading({ progress }: { progress: number }) {
+export default function Loading() {
   return (
     <div className="absolute inset-0 bg-blend-multiply backdrop-blur-sm flex flex-col gap-4 items-center justify-center">
-      <Progress value={progress} className="w-[10%]" />
-      <p className="text-xl animate-pulse">Loading</p>
+      <Commet color="#18181b" size="medium" text="loading" />
     </div>
   );
 }

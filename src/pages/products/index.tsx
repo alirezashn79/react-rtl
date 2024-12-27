@@ -5,7 +5,7 @@ import { Separator } from "@/components/ui/separator";
 import { useProduct } from "@/store";
 import { Product } from "@/types";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import useSwr from "swr";
 
 const fetcher = async () => {
@@ -16,21 +16,11 @@ const fetcher = async () => {
 export default function Products() {
   // state
   const { products, filteredProducts, setProducts } = useProduct();
-  const [progress, setProgress] = useState(0);
 
   const { data, isLoading } = useSwr<Product[]>("products", fetcher);
 
   useEffect(() => {
-    let interval;
-    if (!data) {
-      interval = setInterval(() => {
-        setProgress((prev) => (prev < 93 ? prev + 3 : prev));
-      }, 500);
-    } else {
-      setProgress(100);
-      setProducts(data);
-    }
-    return () => clearInterval(interval!);
+    if (data) setProducts(data);
   }, [data, setProducts]);
 
   const productsList =
@@ -44,7 +34,7 @@ export default function Products() {
       <Separator className="my-2" />
       <main>
         {isLoading ? (
-          <Loading progress={progress} />
+          <Loading />
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-8">
             {productsList?.map((product) => (
