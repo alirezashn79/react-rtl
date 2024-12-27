@@ -12,6 +12,15 @@ export default function Filter() {
     );
     setFilteredProducts(filteredProducts);
   };
+
+  const categories = [
+    "all",
+    "men's clothing",
+    "jewelery",
+    "electronics",
+    "women's clothing",
+  ];
+
   return (
     <div>
       <select
@@ -20,11 +29,11 @@ export default function Filter() {
         id="category"
         className="px-4 py-1 border"
       >
-        <option value="all">all</option>
-        <option value="men's clothing">men's clothing</option>
-        <option value="jewelery">jewelery</option>
-        <option value="electronics">electronics</option>
-        <option value="women's clothing">women's clothing</option>
+        {categories.map((category, idx) => (
+          <option key={idx} value={category}>
+            {category}
+          </option>
+        ))}
       </select>
     </div>
   );
