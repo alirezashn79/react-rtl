@@ -1,6 +1,6 @@
 # 🚀 React-RTL
 
-A small React project built with **Vite**, written in **TypeScript**, and fully tested using **Vitest** and **Testing Library**. This project focuses on clean code, reusable components, and rigorous testing.
+A small React project built with **Vite**, written in **TypeScript**, and fully tested using **Vitest** and **Testing Library** and **Mock Service Worker**. This project focuses on clean code, reusable components, and rigorous testing.
 
 ---
 
@@ -93,36 +93,10 @@ tests/                # Unit and integration tests
 
 ---
 
-## 🤝 Contributions
-
-Contributions are welcome! Feel free to:
-
-- Open issues for bugs or feature requests.
-- Fork the repo and submit pull requests.
-
----
-
 ## 📄 License
 
 This project is licensed under the **MIT License**. See the [LICENSE](./LICENSE) file for details.
 
 ---
 
-## 📧 Contact
-
-For questions or feedback, feel free to reach out:
-
-- **Email**: [alirezashn79@gmail.com](mailto:alirezashn79@gmail.com)
-- **GitHub**: [alirezashn79](https://github.com/alirezashn79)
-
----
-
 ✨ Built with ❤️ using React, Vite, and TypeScript ✨
-
-```
-
-```
-
-```
-
-```
