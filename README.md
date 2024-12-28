@@ -1,50 +1,128 @@
-# React + TypeScript + Vite
+# 🚀 React-RTL
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A small React project built with **Vite**, written in **TypeScript**, and fully tested using **Vitest** and **Testing Library**. This project focuses on clean code, reusable components, and rigorous testing.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌟 Features
 
-## Expanding the ESLint configuration
+- **State Management**: Powered by `zustand` for simplicity and efficiency.
+- **Forms Made Easy**: Includes `react-hook-form` for robust form handling with `zod` validation.
+- **Testing First**: All components are rigorously tested using `Vitest` and `Testing Library`.
+- **Design System**: Styled using `tailwindcss` with animations and utility-based design principles.
+- **Modern Tooling**: Built with Vite for blazing-fast development.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+---
 
-- Configure the top-level `parserOptions` property like this:
+## 🛠️ Scripts
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+The following scripts are defined in `package.json`:
+
+| Script     | Description                           |
+| ---------- | ------------------------------------- |
+| `dev`      | Start the development server.         |
+| `build`    | Build the app for production.         |
+| `lint`     | Run ESLint to check code quality.     |
+| `preview`  | Preview the production build locally. |
+| `test`     | Run all unit and integration tests.   |
+| `coverage` | Generate test coverage report.        |
+
+Run any script using:
+
+```bash
+npm run <script-name>
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+---
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## 🚀 Getting Started
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+Follow these steps to set up the project locally:
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone https://github.com/alirezashn79/react-rtl.git
+   cd react-rtl
+   ```
+
+2. **Install dependencies**:
+
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**:
+   ```bash
+   npm run dev
+   ```
+
+Your app will be available at [http://localhost:3000](http://localhost:3000).
+
+---
+
+## 🧪 Running Tests
+
+This project uses **Vitest** for testing. To run the tests, execute:
+
+```bash
+npm run test
+```
+
+For a detailed coverage report:
+
+```bash
+npm run coverage
+```
+
+---
+
+## 📂 Project Structure
+
+Here's a quick overview of the project's structure:
+
+```plaintext
+src/
+├── components/       # Reusable React components
+├── hooks/            # Custom React hooks
+├── pages/            # Page-level components
+├── styles/           # TailwindCSS configuration and styles
+├── utils/            # Helper functions and utilities
+tests/                # Unit and integration tests
+```
+
+---
+
+## 🤝 Contributions
+
+Contributions are welcome! Feel free to:
+
+- Open issues for bugs or feature requests.
+- Fork the repo and submit pull requests.
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**. See the [LICENSE](./LICENSE) file for details.
+
+---
+
+## 📧 Contact
+
+For questions or feedback, feel free to reach out:
+
+- **Email**: [alirezashn79@gmail.com](mailto:alirezashn79@gmail.com)
+- **GitHub**: [alirezashn79](https://github.com/alirezashn79)
+
+---
+
+✨ Built with ❤️ using React, Vite, and TypeScript ✨
+
+```
+
+```
+
+```
+
 ```
